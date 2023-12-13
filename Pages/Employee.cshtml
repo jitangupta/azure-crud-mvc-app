@@ -1,0 +1,49 @@
+﻿@page
+@model EmployeeModel
+@{
+}
+
+<form method="post" class="mb-5">
+    <h3>Add New Employee</h3>
+    <hr />
+    <div class="form-group mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Department"></label>
+        <select asp-for="Department" asp-items="Model.Departments" class="form-control">
+            <option value="">Select an item</option>
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="DateOfJoining"></label>
+        <input asp-for="DateOfJoining" type="date" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<h3>Employee List</h3>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Date Of Joining</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model.Employees)
+        {
+            <tr>
+                <td>@employee.Name</td>
+                <td>@employee.Dept?.Name</td>
+                <td>@employee.DateOfJoining?.ToString("dd MMM yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
